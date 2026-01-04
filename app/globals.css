@@ -1,42 +1,146 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Color Palette */
+    --color-terracotta: #cc775c;
+    --color-peach: #d5a37f;
+    --color-beige: #e2dacc;
+    --color-black: #141415;
+
+    /* Semantic Variables */
+    --bg-main: var(--color-beige);
+    --bg-card: #ffffff;
+    --text-primary: var(--color-black);
+    --text-secondary: #4a4a4a;
+
+    --accent-primary: var(--color-terracotta);
+    --accent-secondary: var(--color-peach);
+
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "Space Grotesk", sans-serif;
+
+    --container-width: 1100px;
+    --border-radius: 4px;
+    --transition-fast: 0.2s ease;
+  }
+
+  body {
+    @apply bg-beige text-custom-black font-space-grotesk leading-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-space-grotesk font-semibold leading-tight mb-4;
+  }
+
+  p {
+    @apply mb-6 text-[#4a4a4a] leading-relaxed;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@layer components {
+  .container {
+    @apply max-w-[1200px] w-full mx-auto px-10;
+  }
+
+  section {
+    @apply py-20;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-custom-black text-white px-8 py-3.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta hover:-translate-y-0.5;
+  }
+
+  .eyebrow {
+    @apply inline-block text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4;
+  }
+
+  .site-header {
+    @apply py-8 absolute top-0 left-0 w-full z-50;
+  }
+
+  .site-header .container {
+    @apply flex justify-between items-center;
+  }
+
+  .logo {
+    @apply text-2xl font-bold font-space-grotesk;
+  }
+
+  .nav-links {
+    @apply flex gap-8 items-center;
+  }
+
+  .nav-links a {
+    @apply text-base font-medium opacity-80 transition-opacity duration-200;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    @apply opacity-100 text-custom-black underline underline-offset-4;
+  }
+
+  .hero-section {
+    @apply min-h-[80vh] flex items-center pt-[140px];
+  }
+
+  .hero-compact {
+    @apply min-h-[40vh] pt-[140px] pb-[60px];
+  }
+
+  .hero-content {
+    @apply max-w-[800px];
+  }
+
+  .hero-content h1 {
+    @apply text-6xl mb-6;
+  }
+
+  .grid-layout {
+    @apply grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr];
+  }
+
+  .section-title h2 {
+    @apply text-3xl text-terracotta;
+  }
+
+  .lead-text {
+    @apply text-3xl font-medium text-custom-black;
+  }
+
+  .highlight-box {
+    @apply bg-white p-8 rounded border shadow-sm;
+  }
+
+  .styled-list li {
+    @apply mb-3 pl-5 relative list-none;
+  }
+
+  .styled-list li::before {
+    @apply content-['•'] text-terracotta absolute left-0 font-bold;
+  }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
