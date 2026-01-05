@@ -8,32 +8,32 @@ export const metadata = {
 export default function MeetupPage() {
   return (
     <>
-      <section className="min-h-[40vh] pt-[140px] pb-[60px]">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
+      <section className="min-h-[30vh] md:min-h-[40vh] pt-[100px] md:pt-[140px] pb-[40px] md:pb-[60px]">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="max-w-[800px] animate-fade-in">
-            <span className="inline-block text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
+            <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
               Signature Event
             </span>
-            <h1 className="text-6xl mb-6 font-space-grotesk font-semibold leading-tight">
+            <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige transition-colors">
               Hitting The
               <em className="text-terracotta italic">&nbsp;AI</em>
             </h1>
-            <p className="text-[1.4rem] mb-6 text-[#4a4a4a] leading-relaxed">
+            <p className="text-lg md:text-[1.4rem] mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
               Real-world AI use cases. Practical challenges. No hype.
             </p>
 
             {/* Event Details Card */}
             <div className="flex flex-col gap-8 mt-10">
-              <div className="flex flex-wrap gap-10 items-start pt-6 border-t border-black/10">
+              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start pt-6 border-t border-black/10 dark:border-white/10 transition-colors">
                 {/* Date Box */}
                 <div>
-                  <span className="inline-block text-xs mb-2 text-[#4a4a4a]">
+                  <span className="inline-block text-xs mb-2 text-custom-black/60 dark:text-beige/60 uppercase tracking-wider font-semibold">
                     Date & Time
                   </span>
-                  <p className="m-0 font-semibold text-[1.1rem] text-custom-black">
+                  <p className="m-0 font-semibold text-[1.1rem] text-custom-black dark:text-beige transition-colors">
                     18th Of January, 2026
                   </p>
-                  <p className="m-0 text-sm text-[#4a4a4a]">
+                  <p className="m-0 text-sm text-custom-black/70 dark:text-beige/70 transition-colors">
                     2:00 PM - 5:45 PM
                     <span className="block text-xs opacity-80 mt-1">
                       (Asr Prayer Break Included)
@@ -43,14 +43,14 @@ export default function MeetupPage() {
 
                 {/* Location Box */}
                 <div>
-                  <span className="inline-block text-xs mb-2 text-[#4a4a4a]">
+                  <span className="inline-block text-xs mb-2 text-custom-black/60 dark:text-beige/60 uppercase tracking-wider font-semibold">
                     Location
                   </span>
                   <div className="flex flex-col gap-1">
-                    <p className="m-0 font-semibold text-[1.1rem] text-custom-black">
+                    <p className="m-0 font-semibold text-[1.1rem] text-custom-black dark:text-beige transition-colors">
                       COLABS Shahrah-e-Faisal
                     </p>
-                    <p className="m-0 text-[0.95rem] text-[#4a4a4a] max-w-[300px] leading-normal">
+                    <p className="m-0 text-[0.95rem] text-custom-black/70 dark:text-beige/70 max-w-[300px] leading-normal transition-colors">
                       37-B, Main Shahra-e-Faisal, P.E.C.H.S Block 6 PECHS,
                       Karachi
                     </p>
@@ -70,7 +70,7 @@ export default function MeetupPage() {
               <div>
                 <Link
                   href="#"
-                  className="inline-block bg-custom-black text-white px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta hover:-translate-y-0.5 text-lg"
+                  className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
                 >
                   Register Now
                 </Link>
@@ -80,19 +80,19 @@ export default function MeetupPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
             <div>
-              <h2 className="text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
                 What This Event Is About
               </h2>
             </div>
             <div>
-              <p className="text-3xl font-medium text-custom-black mb-6 leading-relaxed">
+              <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
                 Bridge the gap between theory and execution.
               </p>
-              <p className="mb-6 text-[#4a4a4a] leading-relaxed">
+              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
                 Hitting The AI focuses on practical AI—its applications,
                 integrations, and real-world usage across the industry. The goal
                 is to show how teams are using AI today to solve real problems
@@ -103,16 +103,16 @@ export default function MeetupPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#F9F8F6]">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="py-12 md:py-20 bg-[#F9F8F6] dark:bg-white/[0.02] transition-colors">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
             <div>
-              <h2 className="text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
                 Our Agenda
               </h2>
             </div>
             <div>
-              <ul className="border-l-2 border-black/10 pl-8 mt-4">
+              <ul className="border-l-2 border-black/10 dark:border-white/10 pl-8 mt-4 transition-colors">
                 {[
                   {
                     time: "2:00 - 2:30pm",
@@ -147,11 +147,11 @@ export default function MeetupPage() {
                   },
                 ].map((item, index) => (
                   <li key={index} className="mb-8 relative list-none">
-                    <span className="absolute -left-[39px] top-1.5 w-3 h-3 bg-terracotta rounded-full border-2 border-[#F9F8F6]"></span>
-                    <span className="block text-[0.85rem] text-[#4a4a4a] mb-1 font-space-grotesk">
+                    <span className="absolute -left-[39px] top-1.5 w-3 h-3 bg-terracotta rounded-full border-2 border-[#F9F8F6] dark:border-[#2a2a2c]"></span>
+                    <span className="block text-[0.85rem] text-custom-black/60 dark:text-beige/60 mb-1 font-space-grotesk transition-colors">
                       {item.time}
                     </span>
-                    <h4 className="text-xl m-0 mb-1 text-custom-black font-space-grotesk font-semibold leading-tight">
+                    <h4 className="text-xl m-0 mb-1 text-custom-black dark:text-beige font-space-grotesk font-semibold leading-tight transition-colors">
                       {item.title}
                     </h4>
                     {item.speaker && (
@@ -167,9 +167,9 @@ export default function MeetupPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-black/[0.03]">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
               <h3 className="text-3xl mb-6 font-space-grotesk font-semibold leading-tight">
                 Who Should Attend
@@ -193,7 +193,7 @@ export default function MeetupPage() {
               <h3 className="text-3xl mb-6 font-space-grotesk font-semibold leading-tight">
                 Why It Matters
               </h3>
-              <div className="bg-white p-8 rounded border shadow-sm">
+              <div className="bg-white dark:bg-white/5 p-8 rounded border border-black/10 dark:border-white/10 shadow-sm transition-colors">
                 <ul className="mt-0 mb-3 pl-5 relative list-none">
                   <li className="mb-3 pl-5 relative list-none before:content-['•'] before:text-terracotta before:absolute before:left-0 before:font-bold">
                     Learn practical AI, not just concepts
@@ -218,16 +218,16 @@ export default function MeetupPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
             <div>
-              <h2 className="text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
                 Speakers You Can Learn From
               </h2>
             </div>
             <div>
-              <p className="mb-6 text-[#4a4a4a] leading-relaxed">
+              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
                 We have curated a lineup of experienced industry professionals
                 who are actively working with AI. These speakers are not here to
                 repeat generic slides or trends—they are here to share:
@@ -254,22 +254,22 @@ export default function MeetupPage() {
         </div>
       </section>
 
-      <section className="py-20 pb-[120px] text-center">
-        <div className="max-w-[1200px] w-full mx-auto px-10">
+      <section className="py-16 md:py-20 pb-[80px] md:pb-[120px] text-center">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <span className="inline-block text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
             The DevnCode Promise
           </span>
-          <h2 className="text-[2.5rem] mt-4 mb-6 font-space-grotesk font-semibold leading-tight">
+          <h2 className="text-3xl md:text-[2.5rem] mt-4 mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige transition-colors">
             Driven by Intent and Impact.
           </h2>
-          <p className="max-w-[600px] mx-auto mb-8 text-[#4a4a4a] leading-relaxed">
+          <p className="max-w-[600px] mx-auto mb-8 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
             Hitting The AI continues that legacy, bringing together
             professionals and serious learners under one platform to learn,
             share, and grow together.
           </p>
           <Link
             href="#"
-            className="inline-block bg-custom-black text-white px-8 py-3.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta hover:-translate-y-0.5"
+            className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5"
           >
             Register Now
           </Link>

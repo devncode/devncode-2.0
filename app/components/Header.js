@@ -1,24 +1,38 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "./ThemeProvider";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   const isActive = (path) => pathname === path;
 
   return (
-    <header className="py-8 absolute top-0 left-0 w-full z-50">
-      <div className="max-w-[1200px] w-full mx-auto px-10 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold font-space-grotesk">
+    <header className="py-6 md:py-8 absolute top-0 left-0 w-full z-50">
+      <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10 flex justify-between items-center text-custom-black dark:text-beige transition-colors duration-300">
+        <Link
+          href="/"
+          className="text-xl md:text-2xl font-bold font-space-grotesk"
+        >
           devncode.
         </Link>
-        <nav className="flex gap-8 items-center">
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-8 items-center">
           <Link
             href="/"
-            className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black hover:underline hover:underline-offset-4 ${
+            className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
               isActive("/")
-                ? "opacity-100 text-custom-black underline underline-offset-4"
+                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4"
                 : ""
             }`}
           >
@@ -26,22 +40,189 @@ export default function Header() {
           </Link>
           <Link
             href="/meetup"
-            className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black hover:underline hover:underline-offset-4 ${
+            className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
               isActive("/meetup")
-                ? "opacity-100 text-custom-black underline underline-offset-4"
+                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4"
                 : ""
             }`}
           >
             Hitting the AI
           </Link>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 3v2.25m0 13.5V21m8.967-8.967h-2.25M5.25 12h-2.25m15.364-6.364l-1.591 1.591M6.756 17.244l-1.591 1.591m12.727 0l-1.591-1.591M6.756 6.756l-1.591-1.591m12.727 7.5A4.5 4.5 0 117.5 12a4.5 4.5 0 0111.25 0z"
+                />
+              </svg>
+            )}
+          </button>
           <Link
             href="#"
-            className="inline-block bg-custom-black text-white px-6 py-2.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta hover:-translate-y-0.5 text-sm"
+            className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-6 py-2.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-sm"
           >
             Join Community
           </Link>
         </nav>
+
+        {/* Mobile Controls */}
+        <div className="flex md:hidden items-center gap-4">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 3v2.25m0 13.5V21m8.967-8.967h-2.25M5.25 12h-2.25m15.364-6.364l-1.591 1.591M6.756 17.244l-1.591 1.591m12.727 0l-1.591-1.591M6.756 6.756l-1.591-1.591m12.727 7.5A4.5 4.5 0 117.5 12a4.5 4.5 0 0111.25 0z"
+                />
+              </svg>
+            )}
+          </button>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 -mr-2"
+            aria-label="Toggle menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={
+                  isMenuOpen
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M3.75 9h16.5m-16.5 6.75h16.5"
+                }
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-y-0 right-0 w-full max-w-sm bg-beige dark:bg-custom-black shadow-2xl z-[60] transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden`}
+      >
+        <div className="flex flex-col h-full p-8">
+          <div className="flex justify-between items-center mb-12">
+            <span className="text-xl font-bold font-space-grotesk dark:text-beige">
+              devncode.
+            </span>
+            <button onClick={() => setIsMenuOpen(false)} className="p-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6 dark:text-beige"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <nav className="flex flex-col gap-6 text-2xl font-space-grotesk">
+            <Link
+              href="/"
+              className={`hover:text-terracotta transition-colors ${
+                isActive("/") ? "text-terracotta" : "dark:text-white"
+              }`}
+            >
+              Overview
+            </Link>
+            <Link
+              href="/meetup"
+              className={`hover:text-terracotta transition-colors ${
+                isActive("/meetup") ? "text-terracotta" : "dark:text-white"
+              }`}
+            >
+              Hitting the AI
+            </Link>
+          </nav>
+          <div className="mt-auto pt-8 border-t border-black/10 dark:border-white/10">
+            <Link
+              href="#"
+              className="block w-full text-center bg-custom-black text-white dark:bg-white dark:text-custom-black py-4 rounded-full font-medium text-lg"
+            >
+              Join Community
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </header>
   );
 }

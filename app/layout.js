@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ThemeProvider from "./components/ThemeProvider";
 
 export const metadata = {
   title: "DevnCode | Empowering Tech Communities",
@@ -24,9 +25,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
