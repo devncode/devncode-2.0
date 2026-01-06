@@ -106,9 +106,9 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "General Inquiries",
-    email: "contact@devncode.tech",
+    email: "info@devncode.tech",
   },
-  foundingDate: "2020",
+  foundingDate: "2017",
   founder: {
     "@type": "Person",
     name: "Kamran Qadri",
