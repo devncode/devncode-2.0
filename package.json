@@ -10,7 +10,8 @@
     "start": "npx serve@latest out",
     "preview": "npm run build && npm run start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "generate-images": "node scripts/generate-images.js"
   },
   "dependencies": {
     "next": "16.1.1",

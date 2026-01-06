@@ -157,6 +157,7 @@ devncode/
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run lint:fix` - Run ESLint and fix auto-fixable issues
+- `npm run generate-images` - Generate favicon, icons, and OG images from logo.png
 
 ### Analytics Setup
 

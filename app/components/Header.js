@@ -29,9 +29,14 @@ export default function Header() {
       <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10 flex justify-between items-center text-custom-black dark:text-beige transition-colors duration-300">
         <Link
           href="/"
-          className="text-xl md:text-2xl font-bold font-space-grotesk"
+          className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk"
         >
-          DevnCode.
+          <img 
+            src="/logo.png" 
+            alt="DevnCode" 
+            className="w-8 h-8 md:w-10 md:h-10"
+          />
+          <span>DevnCode.</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -182,9 +187,16 @@ export default function Header() {
       >
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-between items-center mb-12">
-            <span className="text-xl font-bold font-space-grotesk dark:text-beige">
-              DevnCode.
-            </span>
+            <div className="flex items-center gap-2">
+              <img 
+                src="/logo.png" 
+                alt="DevnCode" 
+                className="w-8 h-8"
+              />
+              <span className="text-xl font-bold font-space-grotesk dark:text-beige">
+                DevnCode.
+              </span>
+            </div>
             <button 
               onClick={() => setIsMenuOpen(false)} 
               className="p-2"

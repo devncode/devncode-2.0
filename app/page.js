@@ -4,7 +4,7 @@ import TrackedLink from "./components/TrackedLink";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devncode.tech";
 
 export const metadata = {
-  title: "Home",
+  title: "Connecting Developers, City by City",
   description:
     "Discover events, connect with peers, and grow through real-world learning and collaboration. A strong developer community in every city.",
   openGraph: {
@@ -65,7 +65,7 @@ export default function Home() {
                       Upcoming Event
                     </span>
                     <span className="text-white/90 text-sm font-medium">
-                      Jan 18, 2026
+                      Jan 17, 2026
                     </span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-space-grotesk font-bold text-white mb-2 group-hover:underline">

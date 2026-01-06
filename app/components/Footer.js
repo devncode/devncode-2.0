@@ -66,9 +66,16 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
             {/* Brand and Copyright */}
             <div>
-              <h3 className="font-space-grotesk font-semibold text-lg leading-tight mb-2 text-custom-black dark:text-beige">
-                DevnCode
-              </h3>
+              <div className="flex items-center gap-2 mb-2">
+                <img 
+                  src="/logo.png" 
+                  alt="DevnCode" 
+                  className="w-8 h-8 flex-shrink-0 align-middle"
+                />
+                <h3 className="font-space-grotesk font-semibold text-lg leading-none m-0 text-custom-black dark:text-beige">
+                  DevnCode
+                </h3>
+              </div>
               <p className="text-sm text-custom-black/60 dark:text-beige/60 leading-relaxed transition-colors">
                 © 2026 DevnCode. All rights reserved.
               </p>

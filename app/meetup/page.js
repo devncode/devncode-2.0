@@ -31,7 +31,7 @@ export default function MeetupPage() {
                     Date & Time
                   </span>
                   <p className="m-0 font-semibold text-[1.1rem] text-custom-black dark:text-beige transition-colors">
-                    18th Of January, 2026
+                    17th Of January, 2026
                   </p>
                   <p className="m-0 text-sm text-custom-black/70 dark:text-beige/70 transition-colors">
                     2:00 PM - 5:45 PM
@@ -134,9 +134,14 @@ export default function MeetupPage() {
                     title: "Tech Talk",
                     speaker: "Yasir",
                   },
-                  { time: "4:00 - 4:30pm", title: "Break & Networking" },
                   {
-                    time: "4:30 - 5:15pm",
+                    time: "4:00 - 4:30pm",
+                    title: "Tech Talk",
+                    speaker: "Wajahat",
+                  },
+                  { time: "4:30 - 5:00pm", title: "Break & Networking" },
+                  {
+                    time: "5:00 - 5:15pm",
                     title: "Activity / Battle",
                     speaker: "Aisha & Rehan",
                   },
