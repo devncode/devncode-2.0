@@ -1,4 +1,35 @@
 import Link from "next/link";
+import TrackedLink from "./components/TrackedLink";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devncode.tech";
+
+export const metadata = {
+  title: "Home",
+  description:
+    "Discover events, connect with peers, and grow through real-world learning and collaboration. A strong developer community in every city.",
+  openGraph: {
+    title: "DevnCode | Connecting Developers, City by City",
+    description:
+      "Discover events, connect with peers, and grow through real-world learning. No noise. No gatekeeping. Just community.",
+    url: siteUrl,
+    images: [
+      {
+        url: `${siteUrl}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "DevnCode - Connecting Developers, City by City",
+      },
+    ],
+  },
+  twitter: {
+    title: "DevnCode | Connecting Developers, City by City",
+    description:
+      "Discover events, connect with peers, and grow through real-world learning. No noise. No gatekeeping. Just community.",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+};
 
 export default function Home() {
   return (
@@ -7,23 +38,24 @@ export default function Home() {
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="max-w-[800px] animate-fade-in">
             <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
-              Welcome to DevnCode
+              A strong developer community in every city
             </span>
             <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige">
-              Building the future of <br className="hidden md:block" />
+              Connecting Developers, <br className="hidden md:block" />
               <em className="text-terracotta italic">
-                Software Engineering
-              </em>{" "}
-              in Pakistan.
+                City by City
+              </em>.
             </h1>
             <p className="text-lg md:text-xl max-w-[600px] mb-8 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-              Cultivating talent, fostering collaboration, and opening doors for
-              the next generation.
+              Discover events, connect with peers, and grow through real-world
+              learning and collaboration.
             </p>
 
             {/* Event Announcement Card */}
-            <Link
+            <TrackedLink
               href="/meetup"
+              category="navigation"
+              label="Event Card - Hitting The AI"
               className="group block bg-gradient-to-r from-terracotta to-terracotta/90 dark:from-terracotta dark:to-terracotta/80 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 max-w-[600px]"
             >
               <div className="flex items-start justify-between gap-4">
@@ -36,9 +68,9 @@ export default function Home() {
                       Jan 18, 2026
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-space-grotesk font-bold text-white mb-2 group-hover:underline">
+                  <h2 className="text-2xl md:text-3xl font-space-grotesk font-bold text-white mb-2 group-hover:underline">
                     Hitting The AI
-                  </h3>
+                  </h2>
                   <p className="text-white/90 text-sm md:text-base leading-relaxed">
                     Real-world AI use cases. Practical challenges. No hype.
                   </p>
@@ -59,7 +91,7 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -74,37 +106,60 @@ export default function Home() {
             </div>
             <div>
               <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
-                To empower emerging talent and strengthen tech communities
-                across Pakistan.
+                To help developers discover events, connect with peers, and grow
+                through real-world learning and collaboration.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Manifesto Section */}
       <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
             <div>
               <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
-                Who We Are
+                Our Manifesto
               </h2>
             </div>
             <div>
               <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase font-semibold mb-6 text-custom-black dark:text-beige border border-current py-1 px-3 rounded-[20px] transition-colors">
-                Empowerment
+                Community First
               </span>
-              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-                DevnCode was built with one clear purpose:{" "}
-                <strong>Empowerment</strong>. We focus on supporting both
-                individuals and communities who are eager to grow in the IT
-                domain—especially in Software Engineering.
+              <p className="text-xl md:text-2xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
+                Developers don&apos;t grow alone.
               </p>
               <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-                Over time, DevnCode has helped multiple tech communities launch
-                their chapters across Pakistan and organized several signature
-                events. Through mentorship, collaboration, and knowledge
-                sharing, we aim to create real impact.
+                We grow by learning together, sharing real experiences, and
+                showing up for each other.
+              </p>
+              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
+                DevnCode exists to strengthen developer communities — city by
+                city — by helping developers discover events, connect with
+                peers, and level up through real-world learning and
+                collaboration.
+              </p>
+              <p className="text-lg font-semibold text-custom-black dark:text-beige transition-colors">
+                No noise. No gatekeeping. Just community.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
+            <div>
+              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+                Our Vision
+              </h2>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
+                A strong developer community in every city.
               </p>
             </div>
           </div>
@@ -112,14 +167,14 @@ export default function Home() {
       </section>
 
       {/* Team Members Section */}
-      <section className="py-12 md:py-20">
+      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
               Meet The Team
             </h2>
             <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
-              The people driving DevnCode&apos;s mission forward
+              The people building developer communities, city by city
             </p>
           </div>
 
@@ -209,7 +264,7 @@ export default function Home() {
                   Community Lead
                 </p>
                 <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  Empowering voices and fostering growth
+                  Connecting voices and fostering growth
                 </p>
               </div>
             </div>

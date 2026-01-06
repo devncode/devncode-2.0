@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Hitting The AI | DevnCode Event",
-  description: "DevnCode's signature event on real-world AI engineering.",
+  title: "Hitting The AI",
+  description: "DevnCode's signature event on real-world AI engineering. Discover, connect, and grow with the developer community.",
 };
 
 export default function MeetupPage() {

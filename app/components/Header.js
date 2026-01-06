@@ -3,6 +3,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 import { useState, useEffect } from "react";
+import { event } from "../lib/mixpanel";
+import {
+  trackJoinCommunity,
+  trackThemeToggle,
+  trackMenuToggle,
+  trackNavigation,
+  EVENT_LABELS,
+} from "../lib/analytics";
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,7 +31,7 @@ export default function Header() {
           href="/"
           className="text-xl md:text-2xl font-bold font-space-grotesk"
         >
-          devncode.
+          DevnCode.
         </Link>
 
         {/* Desktop Navigation */}
@@ -32,7 +40,7 @@ export default function Header() {
             href="/"
             className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
               isActive("/")
-                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4"
+                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4 font-semibold"
                 : ""
             }`}
           >
@@ -42,7 +50,7 @@ export default function Header() {
             href="/meetup"
             className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
               isActive("/meetup")
-                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4"
+                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4 font-semibold"
                 : ""
             }`}
           >
@@ -86,7 +94,8 @@ export default function Header() {
             )}
           </button>
           <Link
-            href="#"
+            href={process.env.NEXT_PUBLIC_COMMUNITY_JOIN_URL || "#"}
+            onClick={() => event(trackJoinCommunity("Header"))}
             className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-6 py-2.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-sm"
           >
             Join Community
@@ -96,7 +105,10 @@ export default function Header() {
         {/* Mobile Controls */}
         <div className="flex md:hidden items-center gap-4">
           <button
-            onClick={toggleTheme}
+            onClick={() => {
+              toggleTheme();
+              event(trackThemeToggle(theme));
+            }}
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
             aria-label="Toggle theme"
           >
@@ -133,7 +145,10 @@ export default function Header() {
             )}
           </button>
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              setIsMenuOpen(!isMenuOpen);
+              event(trackMenuToggle(isMenuOpen));
+            }}
             className="p-2 -mr-2"
             aria-label="Toggle menu"
           >
@@ -168,9 +183,13 @@ export default function Header() {
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-between items-center mb-12">
             <span className="text-xl font-bold font-space-grotesk dark:text-beige">
-              devncode.
+              DevnCode.
             </span>
-            <button onClick={() => setIsMenuOpen(false)} className="p-2">
+            <button 
+              onClick={() => setIsMenuOpen(false)} 
+              className="p-2"
+              aria-label="Close menu"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -190,24 +209,27 @@ export default function Header() {
           <nav className="flex flex-col gap-6 text-2xl font-space-grotesk">
             <Link
               href="/"
-              className={`hover:text-terracotta transition-colors ${
-                isActive("/") ? "text-terracotta" : "dark:text-white"
+              className={`hover:text-custom-black dark:hover:text-beige transition-colors ${
+                isActive("/") ? "text-custom-black dark:text-beige font-semibold" : "dark:text-white"
               }`}
+              onClick={() => event(trackNavigation(EVENT_LABELS.OVERVIEW_LINK_MOBILE))}
             >
               Overview
             </Link>
             <Link
               href="/meetup"
-              className={`hover:text-terracotta transition-colors ${
-                isActive("/meetup") ? "text-terracotta" : "dark:text-white"
+              className={`hover:text-custom-black dark:hover:text-beige transition-colors ${
+                isActive("/meetup") ? "text-custom-black dark:text-beige font-semibold" : "dark:text-white"
               }`}
+              onClick={() => event(trackNavigation(EVENT_LABELS.HITTING_AI_LINK_MOBILE))}
             >
               Hitting the AI
             </Link>
           </nav>
           <div className="mt-auto pt-8 border-t border-black/10 dark:border-white/10">
             <Link
-              href="#"
+              href={process.env.NEXT_PUBLIC_COMMUNITY_JOIN_URL || "#"}
+              onClick={() => event(trackJoinCommunity("Mobile Menu"))}
               className="block w-full text-center bg-custom-black text-white dark:bg-white dark:text-custom-black py-4 rounded-full font-medium text-lg"
             >
               Join Community

@@ -1,3 +1,7 @@
+"use client";
+
+import { event } from "../lib/mixpanel";
+
 export default function Footer() {
   const socials = [
     {
@@ -63,7 +67,7 @@ export default function Footer() {
             {/* Brand and Copyright */}
             <div>
               <h3 className="font-space-grotesk font-semibold text-lg leading-tight mb-2 text-custom-black dark:text-beige">
-                devncode
+                DevnCode
               </h3>
               <p className="text-sm text-custom-black/60 dark:text-beige/60 leading-relaxed transition-colors">
                 © 2026 DevnCode. All rights reserved.
@@ -79,6 +83,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
+                  onClick={() => {
+                    event({
+                      action: "click",
+                      category: "social",
+                      label: social.name,
+                    });
+                  }}
                   className="p-2.5 rounded-full bg-black/5 dark:bg-white/5 text-custom-black dark:text-beige hover:bg-terracotta hover:text-white dark:hover:bg-terracotta dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                 >
                   {social.icon}

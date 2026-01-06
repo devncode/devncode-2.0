@@ -1,12 +1,16 @@
 {
-  "name": "temp_app",
+  "name": "devncode-2.0",
   "version": "0.1.0",
   "private": true,
+  "description": "DevnCode - Helping developers discover events, connect with peers, and grow through real-world learning and collaboration",
+  "author": "DevnCode Team",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "npx serve@latest out",
+    "preview": "npm run build && npm run start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "next": "16.1.1",
