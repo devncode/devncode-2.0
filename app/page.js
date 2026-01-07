@@ -2,7 +2,10 @@ import Link from "next/link";
 import TrackedLink from "./components/TrackedLink";
 import { SITE_URL } from "./lib/config";
 import { TEAM_MEMBERS } from "./data/team";
+import { TESTIMONIALS } from "./data/testimonials";
 import TeamMember from "./components/TeamMember";
+import TestimonialCard from "./components/TestimonialCard";
+import StatsCounter from "./components/StatsCounter";
 
 export const metadata = {
   title: "Connecting Developers, City by City",
@@ -163,6 +166,50 @@ export default function Home() {
                 A strong developer community in every city.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Statistics Section */}
+      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+              Our Impact
+            </h2>
+            <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+              Building developer communities, one event at a time
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <StatsCounter value={1500} suffix="+" label="Community Members" />
+            <StatsCounter value={28} suffix="+" label="Events Hosted" />
+            <StatsCounter value={5} label="Cities Reached" />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+              What People Say
+            </h2>
+            <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+              Real feedback from our community members
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                author={testimonial.author}
+              />
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 export const CURRENT_EVENT = {
   title: "Hitting The AI",
   date: "17th Of January, 2026",
+  dateISO: "2026-01-17T09:00:00Z", // 2:00 PM PKT (UTC+5) in UTC
   time: "2:00 PM - 5:45 PM",
   timeNote: "(Asr Prayer Break Included)",
   location: {

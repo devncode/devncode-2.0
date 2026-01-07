@@ -1,5 +1,6 @@
 import TrackedLink from "../components/TrackedLink";
 import EventDetails from "../components/EventDetails";
+import Countdown from "../components/Countdown";
 import { CURRENT_EVENT } from "../data/events";
 
 export const metadata = {
@@ -12,31 +13,41 @@ export default function MeetupPage() {
     <>
       <section className="min-h-[30vh] md:min-h-[40vh] pt-[100px] md:pt-[140px] pb-[40px] md:pb-[60px]">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="max-w-[800px] animate-fade-in">
-            <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
-              Signature Event
-            </span>
-            <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige transition-colors">
-              Hitting The
-              <em className="text-terracotta italic">&nbsp;AI</em>
-            </h1>
-            <p className="text-lg md:text-[1.4rem] mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-              Real-world AI use cases. Practical challenges. No hype.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12 items-center">
+            {/* Countdown Timer - First on mobile, side panel on desktop */}
+            {CURRENT_EVENT.dateISO && (
+              <div className="order-1 lg:order-2 animate-fade-in">
+                <Countdown targetDateISO={CURRENT_EVENT.dateISO} />
+              </div>
+            )}
 
-            {/* Event Details Card */}
-            <EventDetails event={CURRENT_EVENT} />
+            {/* Hero Content - Second on mobile, first on desktop */}
+            <div className="order-2 lg:order-1 max-w-[800px] animate-fade-in">
+              <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
+                Signature Event
+              </span>
+              <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige transition-colors">
+                Hitting The
+                <em className="text-terracotta italic">&nbsp;AI</em>
+              </h1>
+              <p className="text-lg md:text-[1.4rem] mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
+                Real-world AI use cases. Practical challenges. No hype.
+              </p>
 
-            {/* Register Button */}
-            <div>
-              <TrackedLink
-                href="/register"
-                category="navigation"
-                label="Register Now (Event Details)"
-                className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
-              >
-                Register Now
-              </TrackedLink>
+              {/* Event Details Card */}
+              <EventDetails event={CURRENT_EVENT} />
+
+              {/* Register Button */}
+              <div className="pt-6 md:pt-8">
+                <TrackedLink
+                  href="/register"
+                  category="navigation"
+                  label="Register Now (Event Details)"
+                  className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
+                >
+                  Register Now
+                </TrackedLink>
+              </div>
             </div>
           </div>
         </div>
