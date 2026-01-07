@@ -1,4 +1,6 @@
-import Link from "next/link";
+import TrackedLink from "../components/TrackedLink";
+import EventDetails from "../components/EventDetails";
+import { CURRENT_EVENT } from "../data/events";
 
 export const metadata = {
   title: "Hitting The AI",
@@ -23,58 +25,18 @@ export default function MeetupPage() {
             </p>
 
             {/* Event Details Card */}
-            <div className="flex flex-col gap-8 mt-10">
-              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start pt-6 border-t border-black/10 dark:border-white/10 transition-colors">
-                {/* Date Box */}
-                <div>
-                  <span className="inline-block text-xs mb-2 text-custom-black/60 dark:text-beige/60 uppercase tracking-wider font-semibold">
-                    Date & Time
-                  </span>
-                  <p className="m-0 font-semibold text-[1.1rem] text-custom-black dark:text-beige transition-colors">
-                    17th Of January, 2026
-                  </p>
-                  <p className="m-0 text-sm text-custom-black/70 dark:text-beige/70 transition-colors">
-                    2:00 PM - 5:45 PM
-                    <span className="block text-xs opacity-80 mt-1">
-                      (Asr Prayer Break Included)
-                    </span>
-                  </p>
-                </div>
+            <EventDetails event={CURRENT_EVENT} />
 
-                {/* Location Box */}
-                <div>
-                  <span className="inline-block text-xs mb-2 text-custom-black/60 dark:text-beige/60 uppercase tracking-wider font-semibold">
-                    Location
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <p className="m-0 font-semibold text-[1.1rem] text-custom-black dark:text-beige transition-colors">
-                      COLABS Shahrah-e-Faisal
-                    </p>
-                    <p className="m-0 text-[0.95rem] text-custom-black/70 dark:text-beige/70 max-w-[300px] leading-normal transition-colors">
-                      37-B, Main Shahra-e-Faisal, P.E.C.H.S Block 6 PECHS,
-                      Karachi
-                    </p>
-                    <a
-                      href="https://maps.app.goo.gl/6eUx8pU9peFkCRCy6"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-2 font-medium underline text-terracotta"
-                    >
-                      📍 View on Map
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Register Button */}
-              <div>
-                <Link
-                  href="#"
-                  className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
-                >
-                  Register Now
-                </Link>
-              </div>
+            {/* Register Button */}
+            <div>
+              <TrackedLink
+                href="/register"
+                category="navigation"
+                label="Register Now (Event Details)"
+                className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
+              >
+                Register Now
+              </TrackedLink>
             </div>
           </div>
         </div>
@@ -113,45 +75,8 @@ export default function MeetupPage() {
             </div>
             <div>
               <ul className="border-l-2 border-black/10 dark:border-white/10 pl-8 mt-4 transition-colors">
-                {[
-                  {
-                    time: "2:00 - 2:30pm",
-                    title: "Registrations and Settlement",
-                  },
-                  { time: "2:30 - 2:45pm", title: "Tilawat" },
-                  {
-                    time: "2:45 - 3:00pm",
-                    title: "Keynote",
-                    speaker: "Kamran Qadri",
-                  },
-                  {
-                    time: "3:00 - 3:30pm",
-                    title: "Tech Talk",
-                    speaker: "Mesum",
-                  },
-                  {
-                    time: "3:30 - 4:00pm",
-                    title: "Tech Talk",
-                    speaker: "Yasir",
-                  },
-                  {
-                    time: "4:00 - 4:30pm",
-                    title: "Tech Talk",
-                    speaker: "Wajahat",
-                  },
-                  { time: "4:30 - 5:00pm", title: "Break & Networking" },
-                  {
-                    time: "5:00 - 5:15pm",
-                    title: "Activity / Battle",
-                    speaker: "Aisha & Rehan",
-                  },
-                  {
-                    time: "5:15 - 5:45pm",
-                    title: "Closing Remarks",
-                    speaker: "Host",
-                  },
-                ].map((item, index) => (
-                  <li key={index} className="mb-8 relative list-none">
+                {CURRENT_EVENT.agenda.map((item, index) => (
+                  <li key={`${item.time}-${item.title}-${index}`} className="mb-8 relative list-none">
                     <span className="absolute -left-[39px] top-1.5 w-3 h-3 bg-terracotta rounded-full border-2 border-[#F9F8F6] dark:border-[#2a2a2c]"></span>
                     <span className="block text-[0.85rem] text-custom-black/60 dark:text-beige/60 mb-1 font-space-grotesk transition-colors">
                       {item.time}
@@ -272,12 +197,14 @@ export default function MeetupPage() {
             professionals and serious learners under one platform to learn,
             share, and grow together.
           </p>
-          <Link
-            href="#"
+          <TrackedLink
+            href="/register"
+            category="navigation"
+            label="Register Now (Bottom CTA)"
             className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5"
           >
             Register Now
-          </Link>
+          </TrackedLink>
         </div>
       </section>
     </>

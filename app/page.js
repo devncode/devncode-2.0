@@ -1,7 +1,8 @@
 import Link from "next/link";
 import TrackedLink from "./components/TrackedLink";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devncode.tech";
+import { SITE_URL } from "./lib/config";
+import { TEAM_MEMBERS } from "./data/team";
+import TeamMember from "./components/TeamMember";
 
 export const metadata = {
   title: "Connecting Developers, City by City",
@@ -11,10 +12,10 @@ export const metadata = {
     title: "DevnCode | Connecting Developers, City by City",
     description:
       "Discover events, connect with peers, and grow through real-world learning. No noise. No gatekeeping. Just community.",
-    url: siteUrl,
+    url: SITE_URL,
     images: [
       {
-        url: `${siteUrl}/og-image.jpg`,
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "DevnCode - Connecting Developers, City by City",
@@ -27,7 +28,7 @@ export const metadata = {
       "Discover events, connect with peers, and grow through real-world learning. No noise. No gatekeeping. Just community.",
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: SITE_URL,
   },
 };
 
@@ -179,95 +180,15 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* Founder */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Kamran Qadri
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Founder & CEO
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  The visionary turning ideas into impact
-                </p>
-              </div>
-            </div>
-
-            {/* VP */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Tehseen
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Vice President
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  Keeping the ship steady and the vision clear
-                </p>
-              </div>
-            </div>
-
-            {/* Community Manager */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Taimoor
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Community Manager
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  The glue that holds our community together
-                </p>
-              </div>
-            </div>
-
-            {/* Operations Manager */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Mustafa Fazal
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Operations Manager
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  Making sure everything runs like clockwork
-                </p>
-              </div>
-            </div>
-
-            {/* Community Lead 1 */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Rehan Sattar
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Community Lead
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  Building connections, one developer at a time
-                </p>
-              </div>
-            </div>
-
-            {/* Community Lead 2 */}
-            <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center">
-              <div>
-                <h3 className="text-xl font-space-grotesk font-bold text-custom-black dark:text-beige mb-2">
-                  Aisha
-                </h3>
-                <p className="text-terracotta font-semibold text-sm mb-3">
-                  Community Lead
-                </p>
-                <p className="text-xs text-custom-black/60 dark:text-beige/60 italic">
-                  Connecting voices and fostering growth
-                </p>
-              </div>
-            </div>
+            {TEAM_MEMBERS.map((member, index) => (
+              <TeamMember
+                key={index}
+                name={member.name}
+                role={member.role}
+                description={member.description}
+                image={member.image}
+              />
+            ))}
           </div>
         </div>
       </section>

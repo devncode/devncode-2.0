@@ -11,6 +11,7 @@ import {
   trackNavigation,
   EVENT_LABELS,
 } from "../lib/analytics";
+import { COMMUNITY_JOIN_URL } from "../lib/config";
 
 export default function Header() {
   const pathname = usePathname();
@@ -99,7 +100,7 @@ export default function Header() {
             )}
           </button>
           <Link
-            href={process.env.NEXT_PUBLIC_COMMUNITY_JOIN_URL || "#"}
+            href={COMMUNITY_JOIN_URL}
             onClick={() => event(trackJoinCommunity("Header"))}
             className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-6 py-2.5 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-sm"
           >
@@ -240,7 +241,7 @@ export default function Header() {
           </nav>
           <div className="mt-auto pt-8 border-t border-black/10 dark:border-white/10">
             <Link
-              href={process.env.NEXT_PUBLIC_COMMUNITY_JOIN_URL || "#"}
+              href={COMMUNITY_JOIN_URL}
               onClick={() => event(trackJoinCommunity("Mobile Menu"))}
               className="block w-full text-center bg-custom-black text-white dark:bg-white dark:text-custom-black py-4 rounded-full font-medium text-lg"
             >

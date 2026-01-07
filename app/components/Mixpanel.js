@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { MIXPANEL_TOKEN } from "../lib/mixpanel";
+import { MIXPANEL_TOKEN } from "../lib/config";
 
 export default function Mixpanel() {
   if (!MIXPANEL_TOKEN) {

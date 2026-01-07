@@ -22,15 +22,12 @@ export const EVENT_LABELS = {
   THEME_LIGHT: "light",
   MENU_OPEN: "open",
   MENU_CLOSE: "close",
+  // Registration events
+  REGISTRATION_PAGE_VIEW: "Registration Page View",
+  REGISTRATION_FORM_LOADED: "Registration Form Loaded",
+  REGISTRATION_FORM_SUBMITTED: "Registration Form Submitted",
+  TALLY_SCRIPT_LOADED: "Tally Script Loaded",
 };
-
-// Helper function to create event tracking objects
-export const createEvent = (action, category, label, value = null) => ({
-  action,
-  category,
-  label,
-  ...(value !== null && { value }),
-});
 
 // Pre-configured event creators for common events
 export const trackJoinCommunity = (location = "Header") => ({

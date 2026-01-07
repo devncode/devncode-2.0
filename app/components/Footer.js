@@ -1,6 +1,7 @@
 "use client";
 
 import { event } from "../lib/mixpanel";
+import { trackSocialClick } from "../lib/analytics";
 
 export default function Footer() {
   const socials = [
@@ -91,11 +92,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.name}
                   onClick={() => {
-                    event({
-                      action: "click",
-                      category: "social",
-                      label: social.name,
-                    });
+                    event(trackSocialClick(social.name));
                   }}
                   className="p-2.5 rounded-full bg-black/5 dark:bg-white/5 text-custom-black dark:text-beige hover:bg-terracotta hover:text-white dark:hover:bg-terracotta dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                 >

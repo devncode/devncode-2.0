@@ -1,17 +1,4 @@
-export const MIXPANEL_TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
-
-// Initialize Mixpanel with autocapture enabled
-export const initMixpanel = () => {
-  if (typeof window !== "undefined" && window.mixpanel && MIXPANEL_TOKEN) {
-    window.mixpanel.init(MIXPANEL_TOKEN, {
-      debug: process.env.NODE_ENV === "development",
-      autocapture: true, // Automatically captures pageviews, clicks, form submissions, etc.
-      persistence: "localStorage",
-    });
-    return true;
-  }
-  return false;
-};
+import { MIXPANEL_TOKEN } from "./config";
 
 // Check if Mixpanel is ready
 const isMixpanelReady = () => {
