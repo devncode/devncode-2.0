@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { event } from "../lib/mixpanel";
 import { trackSocialClick } from "../lib/analytics";
 
@@ -68,9 +69,11 @@ export default function Footer() {
             {/* Brand and Copyright */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <img 
-                  src="/logo.png" 
-                  alt="DevnCode" 
+                <Image
+                  src="/logo.png"
+                  alt="DevnCode"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 flex-shrink-0 align-middle"
                 />
                 <h3 className="font-space-grotesk font-semibold text-lg leading-none m-0 text-custom-black dark:text-beige">

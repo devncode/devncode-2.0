@@ -2,7 +2,10 @@ import TrackedLink from "../components/TrackedLink";
 import EventDetails from "../components/EventDetails";
 import Countdown from "../components/Countdown";
 import ScrollAnimation from "../components/ScrollAnimation";
+import StickyRegister from "../components/StickyRegister";
+import GalleryWrapper from "../components/GalleryWrapper";
 import { CURRENT_EVENT } from "../data/events";
+import { GALLERY_IMAGES } from "../data/gallery";
 
 export const metadata = {
   title: "Hitting The AI",
@@ -204,8 +207,25 @@ export default function MeetupPage() {
         </section>
       </ScrollAnimation>
 
+      {/* Gallery Section */}
+      <ScrollAnimation delay={225}>
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+                Past Events Gallery
+              </h2>
+              <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+                Moments from our community events
+              </p>
+            </div>
+            <GalleryWrapper images={GALLERY_IMAGES} />
+          </div>
+        </section>
+      </ScrollAnimation>
+
       <ScrollAnimation delay={250}>
-        <section className="py-16 md:py-20 pb-[80px] md:pb-[120px] text-center">
+        <section className="py-16 md:py-20 pb-[80px] md:pb-[120px] mb-20 md:mb-0 text-center">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <span className="inline-block text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
               The DevnCode Promise
@@ -229,6 +249,8 @@ export default function MeetupPage() {
           </div>
         </section>
       </ScrollAnimation>
+
+      <StickyRegister href="/register" label="Register Now" />
     </>
   );
 }

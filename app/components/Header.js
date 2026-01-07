@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 import { useState, useEffect } from "react";
@@ -32,10 +33,13 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2 text-xl md:text-2xl font-bold font-space-grotesk"
         >
-          <img 
-            src="/logo.png" 
-            alt="DevnCode" 
+          <Image
+            src="/logo.png"
+            alt="DevnCode"
+            width={40}
+            height={40}
             className="w-8 h-8 md:w-10 md:h-10"
+            priority
           />
           <span>DevnCode.</span>
         </Link>
@@ -189,9 +193,11 @@ export default function Header() {
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-2">
-              <img 
-                src="/logo.png" 
-                alt="DevnCode" 
+              <Image
+                src="/logo.png"
+                alt="DevnCode"
+                width={32}
+                height={32}
                 className="w-8 h-8"
               />
               <span className="text-xl font-bold font-space-grotesk dark:text-beige">

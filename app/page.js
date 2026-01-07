@@ -41,31 +41,34 @@ export default function Home() {
     <>
       <section className="min-h-[70vh] md:min-h-[80vh] flex items-center pt-[100px] md:pt-[140px]">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="max-w-[800px] animate-fade-in">
-            <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
-              A strong developer community in every city
-            </span>
-            <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige">
-              Connecting Developers, <br className="hidden md:block" />
-              <em className="text-terracotta italic">
-                City by City
-              </em>.
-            </h1>
-            <p className="text-lg md:text-xl max-w-[600px] mb-8 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-              Discover events, connect with peers, and grow through real-world
-              learning and collaboration.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12 items-center">
+            {/* Hero Content */}
+            <div className="max-w-[800px] animate-fade-in">
+              <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase text-terracotta font-semibold mb-4">
+                A strong developer community in every city
+              </span>
+              <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige">
+                Connecting Developers, <br className="hidden md:block" />
+                <em className="text-terracotta italic">
+                  City by City
+                </em>.
+              </h1>
+              <p className="text-lg md:text-xl max-w-[600px] mb-8 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
+                Discover events, connect with peers, and grow through real-world
+                learning and collaboration.
+              </p>
+            </div>
 
-            {/* Event Announcement Card */}
-            <TrackedLink
-              href="/meetup"
-              category="navigation"
-              label="Event Card - Hitting The AI"
-              className="group block bg-gradient-to-r from-terracotta to-terracotta/90 dark:from-terracotta dark:to-terracotta/80 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 max-w-[600px]"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-3">
+            {/* Event Announcement Card - Side Panel */}
+            <div className="order-1 lg:order-2 animate-fade-in">
+              <TrackedLink
+                href="/meetup"
+                category="navigation"
+                label="Event Card - Hitting The AI"
+                className="group block bg-gradient-to-r from-terracotta to-terracotta/90 dark:from-terracotta dark:to-terracotta/80 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
                     <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-semibold text-white uppercase tracking-wider">
                       Upcoming Event
                     </span>
@@ -79,24 +82,24 @@ export default function Home() {
                   <p className="text-white/90 text-sm md:text-base leading-relaxed">
                     Real-world AI use cases. Practical challenges. No hype.
                   </p>
+                  <div className="flex items-center justify-end mt-2">
+                    <svg
+                      className="w-6 h-6 text-white transform group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
                 </div>
-                <div className="flex-shrink-0">
-                  <svg
-                    className="w-6 h-6 text-white transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </TrackedLink>
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </section>
