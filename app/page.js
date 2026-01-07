@@ -6,6 +6,7 @@ import { TESTIMONIALS } from "./data/testimonials";
 import TeamMember from "./components/TeamMember";
 import TestimonialCard from "./components/TestimonialCard";
 import StatsCounter from "./components/StatsCounter";
+import ScrollAnimation from "./components/ScrollAnimation";
 
 export const metadata = {
   title: "Connecting Developers, City by City",
@@ -100,145 +101,157 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
-            <div>
-              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
-                Our Mission
-              </h2>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
-                To help developers discover events, connect with peers, and grow
-                through real-world learning and collaboration.
-              </p>
+      <ScrollAnimation>
+        <section className="py-12 md:py-20">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
+              <div>
+                <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+                  Our Mission
+                </h2>
+              </div>
+              <div>
+                <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
+                  To help developers discover events, connect with peers, and grow
+                  through real-world learning and collaboration.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Manifesto Section */}
-      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
-            <div>
-              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
-                Our Manifesto
-              </h2>
-            </div>
-            <div>
-              <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase font-semibold mb-6 text-custom-black dark:text-beige border border-current py-1 px-3 rounded-[20px] transition-colors">
-                Community First
-              </span>
-              <p className="text-xl md:text-2xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
-                Developers don&apos;t grow alone.
-              </p>
-              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-                We grow by learning together, sharing real experiences, and
-                showing up for each other.
-              </p>
-              <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-                DevnCode exists to strengthen developer communities — city by
-                city — by helping developers discover events, connect with
-                peers, and level up through real-world learning and
-                collaboration.
-              </p>
-              <p className="text-lg font-semibold text-custom-black dark:text-beige transition-colors">
-                No noise. No gatekeeping. Just community.
-              </p>
+      <ScrollAnimation delay={100}>
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
+              <div>
+                <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+                  Our Manifesto
+                </h2>
+              </div>
+              <div>
+                <span className="inline-block text-[0.75rem] md:text-[0.85rem] tracking-widest uppercase font-semibold mb-6 text-custom-black dark:text-beige border border-current py-1 px-3 rounded-[20px] transition-colors">
+                  Community First
+                </span>
+                <p className="text-xl md:text-2xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
+                  Developers don&apos;t grow alone.
+                </p>
+                <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
+                  We grow by learning together, sharing real experiences, and
+                  showing up for each other.
+                </p>
+                <p className="mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
+                  DevnCode exists to strengthen developer communities — city by
+                  city — by helping developers discover events, connect with
+                  peers, and level up through real-world learning and
+                  collaboration.
+                </p>
+                <p className="text-lg font-semibold text-custom-black dark:text-beige transition-colors">
+                  No noise. No gatekeeping. Just community.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Vision Section */}
-      <section className="py-12 md:py-20">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
-            <div>
-              <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
-                Our Vision
-              </h2>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
-                A strong developer community in every city.
-              </p>
+      <ScrollAnimation delay={200}>
+        <section className="py-12 md:py-20">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
+              <div>
+                <h2 className="text-2xl md:text-3xl text-terracotta font-space-grotesk font-semibold leading-tight mb-4">
+                  Our Vision
+                </h2>
+              </div>
+              <div>
+                <p className="text-2xl md:text-3xl font-medium text-custom-black dark:text-beige mb-6 leading-relaxed transition-colors">
+                  A strong developer community in every city.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Impact Statistics Section */}
-      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
-              Our Impact
-            </h2>
-            <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
-              Building developer communities, one event at a time
-            </p>
-          </div>
+      <ScrollAnimation delay={100}>
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+                Our Impact
+              </h2>
+              <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+                Building developer communities, one event at a time
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <StatsCounter value={1500} suffix="+" label="Community Members" />
-            <StatsCounter value={28} suffix="+" label="Events Hosted" />
-            <StatsCounter value={5} label="Cities Reached" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              <StatsCounter value={1500} suffix="+" label="Community Members" />
+              <StatsCounter value={28} suffix="+" label="Events Hosted" />
+              <StatsCounter value={5} label="Cities Reached" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Testimonials Section */}
-      <section className="py-12 md:py-20">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
-              What People Say
-            </h2>
-            <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
-              Real feedback from our community members
-            </p>
-          </div>
+      <ScrollAnimation delay={150}>
+        <section className="py-12 md:py-20">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+                What People Say
+              </h2>
+              <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+                Real feedback from our community members
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                author={testimonial.author}
-              />
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {TESTIMONIALS.map((testimonial, index) => (
+                <TestimonialCard
+                  key={index}
+                  quote={testimonial.quote}
+                  author={testimonial.author}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Team Members Section */}
-      <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
-        <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
-              Meet The Team
-            </h2>
-            <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
-              The people building developer communities, city by city
-            </p>
-          </div>
+      <ScrollAnimation delay={200}>
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+                Meet The Team
+              </h2>
+              <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto">
+                The people building developer communities, city by city
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
-              <TeamMember
-                key={index}
-                name={member.name}
-                role={member.role}
-                description={member.description}
-                image={member.image}
-              />
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {TEAM_MEMBERS.map((member, index) => (
+                <TeamMember
+                  key={index}
+                  name={member.name}
+                  role={member.role}
+                  description={member.description}
+                  image={member.image}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
     </>
   );
 }

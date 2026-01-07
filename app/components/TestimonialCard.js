@@ -1,6 +1,6 @@
 export default function TestimonialCard({ quote, author }) {
   return (
-    <div className="bg-white dark:bg-white/5 p-4 md:p-6 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg">
+    <div className="bg-white dark:bg-white/5 p-4 md:p-6 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-300 hover:border-terracotta dark:hover:border-terracotta hover:shadow-xl hover:-translate-y-1">
       <div className="mb-3">
         <svg
           className="w-6 h-6 text-terracotta opacity-60"

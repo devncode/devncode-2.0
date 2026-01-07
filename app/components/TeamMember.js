@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default function TeamMember({ name, role, description, image }) {
   return (
-    <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-200 hover:border-terracotta dark:hover:border-terracotta hover:shadow-lg text-center h-full">
+    <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-300 hover:border-terracotta dark:hover:border-terracotta hover:shadow-xl hover:-translate-y-1 text-center h-full">
       <div className="w-24 h-24 mx-auto mb-4 relative rounded-full overflow-hidden bg-black/5 dark:bg-white/10 flex items-center justify-center">
         {image ? (
           <Image
