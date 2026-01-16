@@ -12,45 +12,58 @@ export const CURRENT_EVENT = {
   agenda: [
     {
       time: "2:00 - 2:30pm",
-      title: "Registrations and Settlement",
+      title: "Registrations and Settlement & Welcome",
+      speaker: "Zain Ahmed (Host)",
+      image: "/speakers/host_zain_ahmed.png",
     },
     { 
       time: "2:30 - 2:45pm", 
-      title: "Tilawat" 
+      title: "Tilawat",
+      speaker: "TBD",
     },
     {
       time: "2:45 - 3:00pm",
       title: "Keynote",
       speaker: "Kamran Qadri",
+      image: "/speakers/keynote_kamran_qadri.png",
     },
     {
       time: "3:00 - 3:30pm",
       title: "Tech Talk",
-      speaker: "TBA",
+      speaker: "Wajahat Karim",
+      description: "Modern Dev Workflows: Getting the most out of tools like Claude Code",
+      image: "/speakers/techtalk_wajahat_karim.png",
     },
     {
       time: "3:30 - 4:00pm",
       title: "Tech Talk",
-      speaker: "Yasir",
-    },
-    {
-      time: "4:00 - 4:30pm",
-      title: "Tech Talk",
-      speaker: "Wajahat",
+      speaker: "Yasir Ameen",
+      description: "AI & Data Privacy: A Builder's Perspective",
+      image: "/speakers/techtalk_yasir_ameen.png",
     },
     { 
-      time: "4:30 - 5:00pm", 
+      time: "4:00 - 4:30pm", 
       title: "Break & Networking" 
     },
     {
-      time: "5:00 - 5:15pm",
-      title: "Activity / Battle",
-      speaker: "Aisha & Rehan",
+      time: "4:30 - 5:00pm",
+      title: "Tech Talk",
+      speaker: "Muhammad Arbab Hussain Siddiqui",
+      description: "AI & RAG: Enhancing LLM Knowledge",
+      image: "/speakers/techtalk_arbab_hussain.png",
     },
     {
-      time: "5:15 - 5:45pm",
+      time: "5:00 - 5:30pm",
+      title: "Activity",
+      speaker: "Aisha Yaseen & Rehan Sattar",
+      image: "/speakers/activity_aisha_yaseen.png",
+      image2: "/speakers/activity_rehan_sattar.png",
+    },
+    {
+      time: "5:30 - 5:45pm",
       title: "Closing Remarks",
-      speaker: "Host",
+      speaker: "Zain Ahmed (Host)",
+      image: "/speakers/host_zain_ahmed.png",
     },
   ],
 };

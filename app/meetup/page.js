@@ -96,17 +96,44 @@ export default function MeetupPage() {
                   {CURRENT_EVENT.agenda.map((item, index) => (
                     <li key={`${item.time}-${item.title}-${index}`} className="mb-8 relative list-none">
                       <span className="absolute -left-[39px] top-1.5 w-3 h-3 bg-terracotta rounded-full border-2 border-[#F9F8F6] dark:border-[#2a2a2c]"></span>
-                      <span className="block text-[0.85rem] text-custom-black/60 dark:text-beige/60 mb-1 font-space-grotesk transition-colors">
-                        {item.time}
-                      </span>
-                      <h4 className="text-xl m-0 mb-1 text-custom-black dark:text-beige font-space-grotesk font-semibold leading-tight transition-colors">
-                        {item.title}
-                      </h4>
-                      {item.speaker && (
-                        <span className="text-base text-terracotta italic">
-                          with {item.speaker}
-                        </span>
-                      )}
+                      <div className="flex gap-4 items-start">
+                        {(item.image || item.image2) && (
+                          <div className="flex gap-2 flex-shrink-0">
+                            {item.image && (
+                              <img 
+                                src={item.image} 
+                                alt={item.speaker || item.title}
+                                className="w-16 h-16 rounded-full object-cover border-2 border-terracotta/20"
+                              />
+                            )}
+                            {item.image2 && (
+                              <img 
+                                src={item.image2} 
+                                alt={item.speaker || item.title}
+                                className="w-16 h-16 rounded-full object-cover border-2 border-terracotta/20"
+                              />
+                            )}
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <span className="block text-[0.85rem] text-custom-black/60 dark:text-beige/60 mb-1 font-space-grotesk transition-colors">
+                            {item.time}
+                          </span>
+                          <h4 className="text-xl m-0 mb-1 text-custom-black dark:text-beige font-space-grotesk font-semibold leading-tight transition-colors">
+                            {item.title}
+                          </h4>
+                          {item.speaker && (
+                            <span className="text-base text-terracotta italic block mb-1">
+                              with {item.speaker}
+                            </span>
+                          )}
+                          {item.description && (
+                            <p className="text-sm text-custom-black/70 dark:text-beige/70 mt-1 mb-0 leading-relaxed">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
