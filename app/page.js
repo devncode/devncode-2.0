@@ -7,6 +7,57 @@ import TeamMember from "./components/TeamMember";
 import TestimonialCard from "./components/TestimonialCard";
 import StatsCounter from "./components/StatsCounter";
 import ScrollAnimation from "./components/ScrollAnimation";
+import communitiesData from "./data/communities.json";
+
+// City extraction utility (same as in communities page)
+function extractCity(title) {
+  const cityPatterns = [
+    { pattern: /\bKarachi\b/i, city: "Karachi" },
+    { pattern: /\bLahore\b/i, city: "Lahore" },
+    { pattern: /\bIslamabad\b/i, city: "Islamabad" },
+    { pattern: /\bPeshawar\b/i, city: "Peshawar" },
+    { pattern: /\bHyderabad\b/i, city: "Hyderabad" },
+    { pattern: /\bAbbottabad\b/i, city: "Abbottabad" },
+    { pattern: /\bSahiwal\b/i, city: "Sahiwal" },
+    { pattern: /\bRawalpindi\b/i, city: "Rawalpindi" },
+    { pattern: /\bQuetta\b/i, city: "Quetta" },
+    { pattern: /\bFaisalabad\b/i, city: "Faisalabad" },
+    { pattern: /\bMultan\b/i, city: "Multan" },
+  ];
+
+  for (const { pattern, city } of cityPatterns) {
+    if (pattern.test(title)) {
+      return city;
+    }
+  }
+
+  return "All Pakistan";
+}
+
+// Count communities by city
+function getCommunityStats() {
+  const activeCommunities = communitiesData.filter(
+    (c) => c.isActive && !c.isDeleted
+  );
+  
+  const cityCounts = {};
+  activeCommunities.forEach((community) => {
+    const city = extractCity(community.title);
+    if (city !== "All Pakistan") {
+      cityCounts[city] = (cityCounts[city] || 0) + 1;
+    }
+  });
+
+  return {
+    total: activeCommunities.length,
+    karachi: cityCounts.Karachi || 0,
+    lahore: cityCounts.Lahore || 0,
+    islamabad: cityCounts.Islamabad || 0,
+    peshawar: cityCounts.Peshawar || 0,
+  };
+}
+
+const communityStats = getCommunityStats();
 
 export const metadata = {
   title: "Connecting Developers, City by City",
@@ -223,6 +274,69 @@ export default function Home() {
                   author={testimonial.author}
                 />
               ))}
+            </div>
+          </div>
+        </section>
+      </ScrollAnimation>
+
+      {/* Developer Ecosystem Section */}
+      <ScrollAnimation delay={150}>
+        <section className="py-12 md:py-20">
+          <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
+                Developer Ecosystem
+              </h2>
+              <p className="text-lg text-custom-black/70 dark:text-beige/70 max-w-[600px] mx-auto mb-8">
+                Discover tech communities across Pakistan, city by city
+              </p>
+              
+              {/* City Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-terracotta mb-2">
+                    {communityStats.karachi}+
+                  </div>
+                  <div className="text-sm md:text-base text-custom-black/70 dark:text-beige/70">
+                    in Karachi
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-terracotta mb-2">
+                    {communityStats.lahore}+
+                  </div>
+                  <div className="text-sm md:text-base text-custom-black/70 dark:text-beige/70">
+                    in Lahore
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-terracotta mb-2">
+                    {communityStats.islamabad}+
+                  </div>
+                  <div className="text-sm md:text-base text-custom-black/70 dark:text-beige/70">
+                    in Islamabad
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-terracotta mb-2">
+                    {communityStats.peshawar}+
+                  </div>
+                  <div className="text-sm md:text-base text-custom-black/70 dark:text-beige/70">
+                    in Peshawar
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <TrackedLink
+                  href="/communities"
+                  category="navigation"
+                  label="Explore Ecosystem (Home)"
+                  className="inline-block bg-custom-black text-white dark:bg-beige dark:text-custom-black px-10 py-4 rounded-full font-medium transition-all duration-200 hover:bg-terracotta dark:hover:bg-terracotta hover:-translate-y-0.5 text-lg"
+                >
+                  Explore Ecosystem
+                </TrackedLink>
+              </div>
             </div>
           </div>
         </section>

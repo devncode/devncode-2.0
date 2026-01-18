@@ -66,6 +66,16 @@ export default function Header() {
           >
             Hitting the AI
           </Link>
+          <Link
+            href="/communities"
+            className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
+              isActive("/communities")
+                ? "opacity-100 text-custom-black dark:text-beige underline underline-offset-4 font-semibold"
+                : ""
+            }`}
+          >
+            Ecosystem
+          </Link>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
@@ -243,6 +253,15 @@ export default function Header() {
               onClick={() => event(trackNavigation(EVENT_LABELS.HITTING_AI_LINK_MOBILE))}
             >
               Hitting the AI
+            </Link>
+            <Link
+              href="/communities"
+              className={`hover:text-custom-black dark:hover:text-beige transition-colors ${
+                isActive("/communities") ? "text-custom-black dark:text-beige font-semibold" : "dark:text-white"
+              }`}
+              onClick={() => event(trackNavigation("Ecosystem Link Mobile"))}
+            >
+              Ecosystem
             </Link>
           </nav>
           <div className="mt-auto pt-8 border-t border-black/10 dark:border-white/10">
