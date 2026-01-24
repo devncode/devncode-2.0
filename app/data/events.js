@@ -33,6 +33,7 @@ export const CURRENT_EVENT = {
       speaker: "Wajahat Karim",
       description: "Modern Dev Workflows: Getting the most out of tools like Claude Code",
       image: "/speakers/techtalk_wajahat_karim.png",
+      slides: "https://docs.google.com/presentation/d/1YPuVbUfks1dDedk5kofIe9ZDDGxVT1C-vLcsDbgY_kQ/edit?slide=id.p#slide=id.p",
     },
     {
       time: "3:30 - 4:00pm",
@@ -40,6 +41,7 @@ export const CURRENT_EVENT = {
       speaker: "Yasir Ameen",
       description: "AI & Data Privacy: A Builder's Perspective",
       image: "/speakers/techtalk_yasir_ameen.png",
+      slides: "https://aiprivacyslides.vercel.app",
     },
     { 
       time: "4:00 - 4:30pm", 
@@ -51,6 +53,7 @@ export const CURRENT_EVENT = {
       speaker: "Muhammad Arbab Hussain Siddiqui",
       description: "AI & RAG: Enhancing LLM Knowledge",
       image: "/speakers/techtalk_arbab_hussain.png",
+      slides: "https://www.canva.com/design/DAG1k7ELalg/mffNn3UwuusUPQMHjALtBQ/edit",
     },
     {
       time: "5:00 - 5:30pm",

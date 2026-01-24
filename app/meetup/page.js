@@ -5,6 +5,7 @@ import ScrollAnimation from "../components/ScrollAnimation";
 import StickyRegister from "../components/StickyRegister";
 import GalleryWrapper from "../components/GalleryWrapper";
 import PageViewTracker from "../components/PageViewTracker";
+import { SlidesIcon } from "../components/icons";
 import { CURRENT_EVENT } from "../data/events";
 import { GALLERY_IMAGES } from "../data/gallery";
 import { EVENT_LABELS } from "../lib/analytics";
@@ -134,6 +135,17 @@ export default function MeetupPage() {
                             <p className="text-sm text-custom-black/70 dark:text-beige/70 mt-1 mb-0 leading-relaxed">
                               {item.description}
                             </p>
+                          )}
+                          {item.slides && (
+                            <a
+                              href={item.slides}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-sm text-terracotta hover:underline mt-2"
+                            >
+                              <SlidesIcon className="w-4 h-4" />
+                              View Slides
+                            </a>
                           )}
                         </div>
                       </div>
