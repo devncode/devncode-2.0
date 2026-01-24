@@ -1,10 +1,17 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { generateSlug } from "../lib/slug";
 
 export default function CommunityCard({ title, logo, city, categories, fb_link, website_link }) {
+  const slug = generateSlug(title);
+
   return (
-    <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-300 hover:border-terracotta dark:hover:border-terracotta hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
+    <Link
+      href={`/communities/${slug}`}
+      className="block h-full"
+    >
+      <div className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-lg border border-black/10 dark:border-white/10 transition-all duration-300 hover:border-terracotta dark:hover:border-terracotta hover:shadow-xl hover:-translate-y-1 h-full flex flex-col cursor-pointer">
       {/* Logo */}
       <div className="w-20 h-20 mx-auto mb-4 relative rounded-lg overflow-hidden bg-black/5 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
         {logo ? (
@@ -64,9 +71,9 @@ export default function CommunityCard({ title, logo, city, categories, fb_link, 
         )}
 
         {/* Social Links */}
-        <div className="flex gap-3 mt-auto pt-2">
+        <div className="flex gap-3 mt-auto pt-2" onClick={(e) => e.stopPropagation()}>
           {fb_link && (
-            <Link
+            <a
               href={fb_link}
               target="_blank"
               rel="noopener noreferrer"
@@ -80,10 +87,10 @@ export default function CommunityCard({ title, logo, city, categories, fb_link, 
               >
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
-            </Link>
+            </a>
           )}
           {website_link && (
-            <Link
+            <a
               href={website_link}
               target="_blank"
               rel="noopener noreferrer"
@@ -103,11 +110,12 @@ export default function CommunityCard({ title, logo, city, categories, fb_link, 
                   d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
                 />
               </svg>
-            </Link>
+            </a>
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 }
 

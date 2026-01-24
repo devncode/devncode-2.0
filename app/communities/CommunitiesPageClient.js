@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import CommunityCard from "../components/CommunityCard";
 import ScrollAnimation from "../components/ScrollAnimation";
-import communitiesData from "../data/communities.json";
 
 // City extraction utility
 function extractCity(title) {
@@ -42,7 +41,7 @@ function processCommunities(data) {
 
 const ITEMS_PER_PAGE = 18;
 
-export default function CommunitiesPageClient() {
+export default function CommunitiesPageClient({ communities }) {
   const [selectedCity, setSelectedCity] = useState("All Cities");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,8 +50,8 @@ export default function CommunitiesPageClient() {
 
   // Process communities once
   const processedCommunities = useMemo(
-    () => processCommunities(communitiesData),
-    []
+    () => processCommunities(communities),
+    [communities]
   );
 
   // Extract unique cities and categories

@@ -7,57 +7,7 @@ import TeamMember from "./components/TeamMember";
 import TestimonialCard from "./components/TestimonialCard";
 import StatsCounter from "./components/StatsCounter";
 import ScrollAnimation from "./components/ScrollAnimation";
-import communitiesData from "./data/communities.json";
-
-// City extraction utility (same as in communities page)
-function extractCity(title) {
-  const cityPatterns = [
-    { pattern: /\bKarachi\b/i, city: "Karachi" },
-    { pattern: /\bLahore\b/i, city: "Lahore" },
-    { pattern: /\bIslamabad\b/i, city: "Islamabad" },
-    { pattern: /\bPeshawar\b/i, city: "Peshawar" },
-    { pattern: /\bHyderabad\b/i, city: "Hyderabad" },
-    { pattern: /\bAbbottabad\b/i, city: "Abbottabad" },
-    { pattern: /\bSahiwal\b/i, city: "Sahiwal" },
-    { pattern: /\bRawalpindi\b/i, city: "Rawalpindi" },
-    { pattern: /\bQuetta\b/i, city: "Quetta" },
-    { pattern: /\bFaisalabad\b/i, city: "Faisalabad" },
-    { pattern: /\bMultan\b/i, city: "Multan" },
-  ];
-
-  for (const { pattern, city } of cityPatterns) {
-    if (pattern.test(title)) {
-      return city;
-    }
-  }
-
-  return "All Pakistan";
-}
-
-// Count communities by city
-function getCommunityStats() {
-  const activeCommunities = communitiesData.filter(
-    (c) => c.isActive && !c.isDeleted
-  );
-  
-  const cityCounts = {};
-  activeCommunities.forEach((community) => {
-    const city = extractCity(community.title);
-    if (city !== "All Pakistan") {
-      cityCounts[city] = (cityCounts[city] || 0) + 1;
-    }
-  });
-
-  return {
-    total: activeCommunities.length,
-    karachi: cityCounts.Karachi || 0,
-    lahore: cityCounts.Lahore || 0,
-    islamabad: cityCounts.Islamabad || 0,
-    peshawar: cityCounts.Peshawar || 0,
-  };
-}
-
-const communityStats = getCommunityStats();
+import { getCommunityStats, getEventStats } from "./lib/db";
 
 export const metadata = {
   title: "Connecting Developers, City by City",
@@ -87,7 +37,13 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  // Fetch statistics directly from MongoDB using aggregation
+  const [communityStats, eventStats] = await Promise.all([
+    getCommunityStats(),
+    getEventStats(),
+  ]);
+
   return (
     <>
       <section className="min-h-[70vh] md:min-h-[80vh] flex items-center pt-[100px] md:pt-[140px]">
@@ -156,7 +112,7 @@ export default function Home() {
       </section>
 
       <ScrollAnimation>
-        <section className="py-12 md:py-20">
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
               <div>
@@ -177,7 +133,7 @@ export default function Home() {
 
       {/* Manifesto Section */}
       <ScrollAnimation delay={100}>
-        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+        <section className="py-12 md:py-20">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
               <div>
@@ -213,7 +169,7 @@ export default function Home() {
 
       {/* Vision Section */}
       <ScrollAnimation delay={200}>
-        <section className="py-12 md:py-20">
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <div className="grid grid-cols-1 gap-6 md:gap-10 md:grid-cols-[1fr_2fr]">
               <div>
@@ -233,7 +189,7 @@ export default function Home() {
 
       {/* Impact Statistics Section */}
       <ScrollAnimation delay={100}>
-        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
+        <section className="py-12 md:py-20">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">
@@ -244,9 +200,10 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
               <StatsCounter value={1500} suffix="+" label="Community Members" />
-              <StatsCounter value={28} suffix="+" label="Events Hosted" />
+              <StatsCounter value={eventStats.total} suffix="+" label="Events Hosted" />
+              <StatsCounter value={communityStats.total} suffix="+" label="Communities" />
               <StatsCounter value={5} label="Cities Reached" />
             </div>
           </div>
@@ -255,7 +212,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <ScrollAnimation delay={150}>
-        <section className="py-12 md:py-20">
+        <section className="py-12 md:py-20 bg-black/[0.03] dark:bg-white/[0.03] transition-colors">
           <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-space-grotesk font-semibold leading-tight mb-4 text-custom-black dark:text-beige">

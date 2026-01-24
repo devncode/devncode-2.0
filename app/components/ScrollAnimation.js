@@ -25,7 +25,7 @@ export default function ScrollAnimation({
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
@@ -41,19 +41,19 @@ export default function ScrollAnimation({
   }, [delay]);
 
   const directionClasses = {
-    up: "translate-y-4",
-    down: "-translate-y-4",
-    left: "translate-x-4",
-    right: "-translate-x-4",
+    up: "translate-y-6",
+    down: "-translate-y-6",
+    left: "translate-x-6",
+    right: "-translate-x-6",
   };
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-600 ease-out ${
         isVisible
           ? "opacity-100 translate-y-0 translate-x-0"
-          : `opacity-0 ${directionClasses[direction]}`
+          : `opacity-75 ${directionClasses[direction]}`
       } ${className}`}
     >
       {children}
