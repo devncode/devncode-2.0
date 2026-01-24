@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import Script from "next/script";
 import { MIXPANEL_TOKEN } from "../lib/config";
+import { identifyUser } from "../lib/userId";
 
 export default function Mixpanel() {
   if (!MIXPANEL_TOKEN) {
@@ -16,10 +18,31 @@ export default function Mixpanel() {
     mixpanel.init('${MIXPANEL_TOKEN}', {autocapture: true, record_sessions_percent: 100});
   `;
 
+  // Identify user after Mixpanel loads
+  useEffect(() => {
+    const checkAndIdentify = () => {
+      if (window.mixpanel && typeof window.mixpanel.identify === "function") {
+        identifyUser();
+      } else {
+        // Retry after a short delay if Mixpanel isn't ready yet
+        setTimeout(checkAndIdentify, 100);
+      }
+    };
+
+    // Start checking after script loads
+    const timeoutId = setTimeout(checkAndIdentify, 500);
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <Script
       id="mixpanel-init"
       strategy="afterInteractive"
+      onLoad={() => {
+        // Identify user once Mixpanel script loads
+        setTimeout(identifyUser, 100);
+      }}
       dangerouslySetInnerHTML={{ __html: mixpanelInitScript }}
     />
   );

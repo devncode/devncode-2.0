@@ -4,8 +4,10 @@ import Countdown from "../components/Countdown";
 import ScrollAnimation from "../components/ScrollAnimation";
 import StickyRegister from "../components/StickyRegister";
 import GalleryWrapper from "../components/GalleryWrapper";
+import PageViewTracker from "../components/PageViewTracker";
 import { CURRENT_EVENT } from "../data/events";
 import { GALLERY_IMAGES } from "../data/gallery";
+import { EVENT_LABELS } from "../lib/analytics";
 
 export const metadata = {
   title: "Hitting The AI",
@@ -15,6 +17,7 @@ export const metadata = {
 export default function MeetupPage() {
   return (
     <>
+      <PageViewTracker label={EVENT_LABELS.MEETUP_PAGE_VIEW} />
       <section className="min-h-[30vh] md:min-h-[40vh] pt-[100px] md:pt-[140px] pb-[40px] md:pb-[60px]">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12 items-center">

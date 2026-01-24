@@ -1,5 +1,7 @@
 import CommunitiesPageClient from "./CommunitiesPageClient";
+import PageViewTracker from "../components/PageViewTracker";
 import { SITE_URL } from "../lib/config";
+import { EVENT_LABELS } from "../lib/analytics";
 import { getCommunities } from "../lib/db";
 
 export const metadata = {
@@ -16,5 +18,10 @@ export const metadata = {
 
 export default async function CommunitiesPage() {
   const communities = await getCommunities();
-  return <CommunitiesPageClient communities={communities} />;
+  return (
+    <>
+      <PageViewTracker label={EVENT_LABELS.COMMUNITIES_PAGE_VIEW} />
+      <CommunitiesPageClient communities={communities} />
+    </>
+  );
 }

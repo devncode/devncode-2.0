@@ -2,6 +2,9 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { generateSlug } from "../lib/slug";
+import { event } from "../lib/mixpanel";
+import { trackExternalLink } from "../lib/analytics";
+import { FacebookIcon, GlobeIcon } from "./icons";
 
 export default function CommunityCard({ title, logo, city, categories, fb_link, website_link }) {
   const slug = generateSlug(title);
@@ -77,16 +80,11 @@ export default function CommunityCard({ title, logo, city, categories, fb_link, 
               href={fb_link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => event(trackExternalLink("Facebook", fb_link))}
               className="text-custom-black/60 dark:text-beige/60 hover:text-terracotta transition-colors"
               aria-label={`${title} Facebook`}
             >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
+              <FacebookIcon />
             </a>
           )}
           {website_link && (
@@ -94,22 +92,11 @@ export default function CommunityCard({ title, logo, city, categories, fb_link, 
               href={website_link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => event(trackExternalLink("Website", website_link))}
               className="text-custom-black/60 dark:text-beige/60 hover:text-terracotta transition-colors"
               aria-label={`${title} Website`}
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-              </svg>
+              <GlobeIcon />
             </a>
           )}
         </div>

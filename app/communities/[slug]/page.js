@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import BackNavigation from "../../components/BackNavigation";
 import EventCard from "../../components/EventCard";
+import PageViewTracker from "../../components/PageViewTracker";
 import ScrollAnimation from "../../components/ScrollAnimation";
+import CommunityExternalLinks from "../../components/CommunityExternalLinks";
 import { getCommunities, getEvents } from "../../lib/db";
 import { generateSlug, findCommunityBySlug } from "../../lib/slug";
+import { extractCity } from "../../lib/cities";
 import { SITE_URL } from "../../lib/config";
 
 // Generate static params for all communities
@@ -98,27 +101,11 @@ export default async function CommunityDetailPage({ params }) {
     });
 
   // Extract city from title
-  const cityPatterns = [
-    { pattern: /\bKarachi\b/i, city: "Karachi" },
-    { pattern: /\bLahore\b/i, city: "Lahore" },
-    { pattern: /\bIslamabad\b/i, city: "Islamabad" },
-    { pattern: /\bPeshawar\b/i, city: "Peshawar" },
-    { pattern: /\bHyderabad\b/i, city: "Hyderabad" },
-    { pattern: /\bAbbottabad\b/i, city: "Abbottabad" },
-    { pattern: /\bSahiwal\b/i, city: "Sahiwal" },
-    { pattern: /\bRawalpindi\b/i, city: "Rawalpindi" },
-  ];
-
-  let city = null;
-  for (const { pattern, city: cityName } of cityPatterns) {
-    if (pattern.test(community.title)) {
-      city = cityName;
-      break;
-    }
-  }
+  const city = extractCity(community.title);
 
   return (
     <>
+      <PageViewTracker label={`Community Detail View: ${community.title}`} />
       {/* Back Navigation */}
       <BackNavigation />
 
@@ -177,59 +164,16 @@ export default async function CommunityDetailPage({ params }) {
               )}
 
               {/* Social Links */}
-              <div className="flex flex-wrap gap-4 mb-6">
-                {community.fb_link && (
-                  <a
-                    href={community.fb_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg hover:border-terracotta transition-colors text-custom-black dark:text-beige"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                    Facebook
-                  </a>
-                )}
-                {community.website_link && (
-                  <a
-                    href={community.website_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg hover:border-terracotta transition-colors text-custom-black dark:text-beige"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                      />
-                    </svg>
-                    Website
-                  </a>
-                )}
-                {community.fb_group && (
-                  <a
-                    href={community.fb_group}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg hover:border-terracotta transition-colors text-custom-black dark:text-beige"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                    Facebook Group
-                  </a>
-                )}
-              </div>
+              <CommunityExternalLinks 
+                fb_link={community.fb_link}
+                website_link={community.website_link}
+                fb_group={community.fb_group}
+              />
 
               {/* Description */}
+              {/* Trust assumption: community.description comes from admin-controlled MongoDB
+                  and is expected to contain safe HTML. If this data source becomes user-generated,
+                  sanitization (e.g., DOMPurify) must be added before rendering. */}
               {community.description && (
                 <div
                   className="prose prose-sm md:prose-base dark:prose-invert max-w-none text-custom-black/70 dark:text-beige/70"

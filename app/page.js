@@ -1,8 +1,11 @@
 import Link from "next/link";
 import TrackedLink from "./components/TrackedLink";
+import PageViewTracker from "./components/PageViewTracker";
 import { SITE_URL } from "./lib/config";
 import { TEAM_MEMBERS } from "./data/team";
 import { TESTIMONIALS } from "./data/testimonials";
+import { CURRENT_EVENT } from "./data/events";
+import { EVENT_LABELS } from "./lib/analytics";
 import TeamMember from "./components/TeamMember";
 import TestimonialCard from "./components/TestimonialCard";
 import StatsCounter from "./components/StatsCounter";
@@ -46,6 +49,7 @@ export default async function Home() {
 
   return (
     <>
+      <PageViewTracker label={EVENT_LABELS.HOME_PAGE_VIEW} />
       <section className="min-h-[70vh] md:min-h-[80vh] flex items-center pt-[100px] md:pt-[140px]">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12 items-center">
@@ -80,7 +84,7 @@ export default async function Home() {
                       Upcoming Event
                     </span>
                     <span className="text-white/90 text-sm font-medium">
-                      Jan 17, 2026
+                      {new Date(CURRENT_EVENT.dateISO).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-space-grotesk font-bold text-white mb-2 group-hover:underline">

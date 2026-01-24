@@ -18,6 +18,8 @@ export const EVENT_LABELS = {
   JOIN_COMMUNITY_MOBILE: "Join Community (Mobile Menu)",
   OVERVIEW_LINK_MOBILE: "Overview Link (Mobile)",
   HITTING_AI_LINK_MOBILE: "Hitting the AI Link (Mobile)",
+  ECOSYSTEM_LINK_MOBILE: "Ecosystem Link (Mobile)",
+  EVENTS_LINK_MOBILE: "Events Link (Mobile)",
   THEME_DARK: "dark",
   THEME_LIGHT: "light",
   MENU_OPEN: "open",
@@ -27,6 +29,11 @@ export const EVENT_LABELS = {
   REGISTRATION_FORM_LOADED: "Registration Form Loaded",
   REGISTRATION_FORM_SUBMITTED: "Registration Form Submitted",
   TALLY_SCRIPT_LOADED: "Tally Script Loaded",
+  // Page view events
+  HOME_PAGE_VIEW: "Home Page View",
+  MEETUP_PAGE_VIEW: "Meetup Page View",
+  COMMUNITIES_PAGE_VIEW: "Communities Page View",
+  EVENTS_PAGE_VIEW: "Events Page View",
 };
 
 // Pre-configured event creators for common events
@@ -60,5 +67,12 @@ export const trackSocialClick = (socialName) => ({
   action: EVENT_ACTIONS.CLICK,
   category: EVENT_CATEGORIES.SOCIAL,
   label: socialName,
+});
+
+export const trackExternalLink = (linkType, destination) => ({
+  action: EVENT_ACTIONS.CLICK,
+  category: EVENT_CATEGORIES.ENGAGEMENT,
+  label: `External Link: ${linkType}`,
+  value: destination,
 });
 

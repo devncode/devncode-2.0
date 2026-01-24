@@ -3,31 +3,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import CommunityCard from "../components/CommunityCard";
 import ScrollAnimation from "../components/ScrollAnimation";
-
-// City extraction utility
-function extractCity(title) {
-  const cityPatterns = [
-    { pattern: /\bKarachi\b/i, city: "Karachi" },
-    { pattern: /\bLahore\b/i, city: "Lahore" },
-    { pattern: /\bIslamabad\b/i, city: "Islamabad" },
-    { pattern: /\bPeshawar\b/i, city: "Peshawar" },
-    { pattern: /\bHyderabad\b/i, city: "Hyderabad" },
-    { pattern: /\bAbbottabad\b/i, city: "Abbottabad" },
-    { pattern: /\bSahiwal\b/i, city: "Sahiwal" },
-    { pattern: /\bRawalpindi\b/i, city: "Rawalpindi" },
-    { pattern: /\bQuetta\b/i, city: "Quetta" },
-    { pattern: /\bFaisalabad\b/i, city: "Faisalabad" },
-    { pattern: /\bMultan\b/i, city: "Multan" },
-  ];
-
-  for (const { pattern, city } of cityPatterns) {
-    if (pattern.test(title)) {
-      return city;
-    }
-  }
-
-  return "All Pakistan";
-}
+import { extractCity } from "../lib/cities";
+import { event } from "../lib/mixpanel";
+import { EVENT_ACTIONS, EVENT_CATEGORIES } from "../lib/analytics";
 
 // Filter and process communities
 function processCommunities(data) {
@@ -35,7 +13,7 @@ function processCommunities(data) {
     .filter((community) => community.isActive && !community.isDeleted)
     .map((community) => ({
       ...community,
-      city: extractCity(community.title),
+      city: extractCity(community.title) || "All Pakistan",
     }));
 }
 
@@ -119,6 +97,40 @@ export default function CommunitiesPageClient({ communities }) {
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
   }, [selectedCity, selectedCategory, searchTerm]);
+
+  // Track filter changes
+  const handleCityChange = (city) => {
+    setSelectedCity(city);
+    event({
+      action: EVENT_ACTIONS.CLICK,
+      category: EVENT_CATEGORIES.ENGAGEMENT,
+      label: `City Filter: ${city}`,
+    });
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    event({
+      action: EVENT_ACTIONS.CLICK,
+      category: EVENT_CATEGORIES.ENGAGEMENT,
+      label: `Category Filter: ${category}`,
+    });
+  };
+
+  // Debounced search tracking
+  useEffect(() => {
+    if (!searchTerm) return;
+    
+    const timeoutId = setTimeout(() => {
+      event({
+        action: "search",
+        category: EVENT_CATEGORIES.ENGAGEMENT,
+        label: `Search Communities: ${searchTerm}`,
+      });
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
 
   // Infinite scroll observer
   useEffect(() => {
@@ -211,7 +223,7 @@ export default function CommunitiesPageClient({ communities }) {
                 {cities.map((city) => (
                   <button
                     key={city}
-                    onClick={() => setSelectedCity(city)}
+                    onClick={() => handleCityChange(city)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCity === city
                         ? "bg-terracotta text-white"
@@ -226,7 +238,7 @@ export default function CommunitiesPageClient({ communities }) {
                     !["All Cities", "Karachi", "Lahore", "Islamabad", "Peshawar"].includes(c)
                 ).length > 0 && (
                   <button
-                    onClick={() => setSelectedCity("Other Cities")}
+                    onClick={() => handleCityChange("Other Cities")}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCity === "Other Cities"
                         ? "bg-terracotta text-white"
@@ -248,7 +260,7 @@ export default function CommunitiesPageClient({ communities }) {
                 {categories.map((category) => (
                   <button
                     key={category}
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
                         ? "bg-terracotta text-white"

@@ -1,0 +1,32 @@
+{
+  "name": "DevnCode | Connecting Developers, City by City",
+  "short_name": "DevnCode",
+  "description": "Discover events, connect with peers, and grow through real-world learning and collaboration. A strong developer community in every city.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e2dacc",
+  "theme_color": "#cc775c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "social", "developer"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

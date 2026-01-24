@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
+import { CITY_PATTERNS } from "./cities";
 
 const uri = process.env.MONGODB_URI;
 
@@ -191,23 +192,21 @@ export async function getCommunityStats() {
           },
         },
         // Extract city from title using regex matching
+        // Using CITY_PATTERNS from shared utility - convert to MongoDB $regexMatch format
         {
           $addFields: {
             city: {
               $switch: {
-                branches: [
-                  { case: { $regexMatch: { input: "$title", regex: "\\bKarachi\\b", options: "i" } }, then: "Karachi" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bLahore\\b", options: "i" } }, then: "Lahore" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bIslamabad\\b", options: "i" } }, then: "Islamabad" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bPeshawar\\b", options: "i" } }, then: "Peshawar" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bHyderabad\\b", options: "i" } }, then: "Hyderabad" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bAbbottabad\\b", options: "i" } }, then: "Abbottabad" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bSahiwal\\b", options: "i" } }, then: "Sahiwal" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bRawalpindi\\b", options: "i" } }, then: "Rawalpindi" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bQuetta\\b", options: "i" } }, then: "Quetta" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bFaisalabad\\b", options: "i" } }, then: "Faisalabad" },
-                  { case: { $regexMatch: { input: "$title", regex: "\\bMultan\\b", options: "i" } }, then: "Multan" },
-                ],
+                branches: CITY_PATTERNS.map(({ pattern, city }) => ({
+                  case: { 
+                    $regexMatch: { 
+                      input: "$title", 
+                      regex: pattern.source, // Extract regex pattern string
+                      options: "i" 
+                    } 
+                  }, 
+                  then: city 
+                })),
                 default: null,
               },
             },

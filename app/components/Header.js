@@ -56,6 +56,7 @@ export default function Header() {
           >
             Overview
           </Link>
+          {/* Tempary disabled until we have a meetup page */}
           {/* <Link
             href="/meetup"
             className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
@@ -76,6 +77,7 @@ export default function Header() {
           >
             Ecosystem
           </Link>
+          {/* Tempary disabled until we have a events page */}
           {/* <Link
             href="/events"
             className={`text-base font-medium opacity-80 transition-opacity duration-200 hover:opacity-100 hover:text-custom-black dark:hover:text-beige hover:underline hover:underline-offset-4 ${
@@ -269,7 +271,7 @@ export default function Header() {
               className={`hover:text-custom-black dark:hover:text-beige transition-colors ${
                 isActive("/communities") ? "text-custom-black dark:text-beige font-semibold" : "dark:text-white"
               }`}
-              onClick={() => event(trackNavigation("Ecosystem Link Mobile"))}
+              onClick={() => event(trackNavigation(EVENT_LABELS.ECOSYSTEM_LINK_MOBILE))}
             >
               Ecosystem
             </Link>
@@ -278,7 +280,7 @@ export default function Header() {
               className={`hover:text-custom-black dark:hover:text-beige transition-colors ${
                 isActive("/events") ? "text-custom-black dark:text-beige font-semibold" : "dark:text-white"
               }`}
-              onClick={() => event(trackNavigation("Events Link Mobile"))}
+              onClick={() => event(trackNavigation(EVENT_LABELS.EVENTS_LINK_MOBILE))}
             >
               Events
             </Link>

@@ -5,30 +5,34 @@ import { CURRENT_EVENT } from "../data/events";
 import { EVENT_LABELS } from "../lib/analytics";
 import { SITE_URL } from "../lib/config";
 
-export const metadata = {
-  title: "Register - Hitting The AI",
-  description: "Register for DevnCode's signature event on real-world AI engineering. Join us on January 17, 2026.",
-  openGraph: {
-    title: "Register - Hitting The AI | DevnCode",
-    description: "Register for DevnCode's signature event on real-world AI engineering. Join us on January 17, 2026.",
-    url: `${SITE_URL}/register`,
-    images: [
-      {
-        url: `${SITE_URL}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "DevnCode - Register for Hitting The AI",
-      },
-    ],
-  },
-  twitter: {
-    title: "Register - Hitting The AI | DevnCode",
-    description: "Register for DevnCode's signature event on real-world AI engineering.",
-  },
-  alternates: {
-    canonical: `${SITE_URL}/register`,
-  },
-};
+export function generateMetadata() {
+  const eventDate = new Date(CURRENT_EVENT.dateISO).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  
+  return {
+    title: "Register - Hitting The AI",
+    description: `Register for DevnCode's signature event on real-world AI engineering. Join us on ${eventDate}.`,
+    openGraph: {
+      title: "Register - Hitting The AI | DevnCode",
+      description: `Register for DevnCode's signature event on real-world AI engineering. Join us on ${eventDate}.`,
+      url: `${SITE_URL}/register`,
+      images: [
+        {
+          url: `${SITE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "DevnCode - Register for Hitting The AI",
+        },
+      ],
+    },
+    twitter: {
+      title: "Register - Hitting The AI | DevnCode",
+      description: "Register for DevnCode's signature event on real-world AI engineering.",
+    },
+    alternates: {
+      canonical: `${SITE_URL}/register`,
+    },
+  };
+}
 
 export default function RegisterPage() {
   return (
@@ -45,7 +49,7 @@ export default function RegisterPage() {
               <em className="text-terracotta italic">Hitting The AI</em>
             </h1>
             <p className="text-lg md:text-[1.4rem] mb-6 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
-              Join us on January 17, 2026 for real-world AI use cases and
+              Join us on {new Date(CURRENT_EVENT.dateISO).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} for real-world AI use cases and
               practical challenges.
             </p>
 

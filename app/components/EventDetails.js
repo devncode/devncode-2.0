@@ -1,4 +1,8 @@
+"use client";
+
 import PropTypes from "prop-types";
+import { event } from "../lib/mixpanel";
+import { trackExternalLink } from "../lib/analytics";
 
 export default function EventDetails({ event }) {
   if (!event || !event.location) {
@@ -49,6 +53,7 @@ export default function EventDetails({ event }) {
                 href={event.location.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => event(trackExternalLink("Map", event.location.mapUrl))}
                 className="inline-flex items-center gap-1.5 mt-2 font-medium underline text-terracotta"
               >
                 📍 View on Map

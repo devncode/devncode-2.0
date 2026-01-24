@@ -3,31 +3,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import EventCard from "../components/EventCard";
 import ScrollAnimation from "../components/ScrollAnimation";
-
-// City extraction utility (same as communities)
-function extractCity(title) {
-  const cityPatterns = [
-    { pattern: /\bKarachi\b/i, city: "Karachi" },
-    { pattern: /\bLahore\b/i, city: "Lahore" },
-    { pattern: /\bIslamabad\b/i, city: "Islamabad" },
-    { pattern: /\bPeshawar\b/i, city: "Peshawar" },
-    { pattern: /\bHyderabad\b/i, city: "Hyderabad" },
-    { pattern: /\bAbbottabad\b/i, city: "Abbottabad" },
-    { pattern: /\bSahiwal\b/i, city: "Sahiwal" },
-    { pattern: /\bRawalpindi\b/i, city: "Rawalpindi" },
-    { pattern: /\bQuetta\b/i, city: "Quetta" },
-    { pattern: /\bFaisalabad\b/i, city: "Faisalabad" },
-    { pattern: /\bMultan\b/i, city: "Multan" },
-  ];
-
-  for (const { pattern, city } of cityPatterns) {
-    if (pattern.test(title)) {
-      return city;
-    }
-  }
-
-  return null;
-}
+import { extractCity } from "../lib/cities";
+import { event } from "../lib/mixpanel";
+import { EVENT_ACTIONS, EVENT_CATEGORIES } from "../lib/analytics";
 
 // Process and filter events
 function processEvents(data) {
@@ -128,6 +106,40 @@ export default function EventsPageClient({ events, communities }) {
     setVisibleCount(ITEMS_PER_PAGE);
   }, [selectedCity, selectedYear, searchTerm]);
 
+  // Track filter changes
+  const handleCityChange = (city) => {
+    setSelectedCity(city);
+    event({
+      action: EVENT_ACTIONS.CLICK,
+      category: EVENT_CATEGORIES.ENGAGEMENT,
+      label: `City Filter (Events): ${city}`,
+    });
+  };
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+    event({
+      action: EVENT_ACTIONS.CLICK,
+      category: EVENT_CATEGORIES.ENGAGEMENT,
+      label: `Year Filter: ${year}`,
+    });
+  };
+
+  // Debounced search tracking
+  useEffect(() => {
+    if (!searchTerm) return;
+    
+    const timeoutId = setTimeout(() => {
+      event({
+        action: "search",
+        category: EVENT_CATEGORIES.ENGAGEMENT,
+        label: `Search Events: ${searchTerm}`,
+      });
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
+
   // Infinite scroll observer
   useEffect(() => {
     if (visibleEvents.length >= filteredEvents.length) {
@@ -209,7 +221,7 @@ export default function EventsPageClient({ events, communities }) {
               Event History
             </span>
             <h1 className="text-4xl md:text-6xl mb-6 font-space-grotesk font-semibold leading-tight dark:text-beige">
-              525+ Events Hosted
+              {processedEvents.length}+ Events Hosted
             </h1>
             <p className="text-lg md:text-xl max-w-[600px] mb-8 text-custom-black/70 dark:text-beige/70 leading-relaxed transition-colors">
               Explore the developer community&apos;s event history across Pakistan, organized by year and city.
@@ -259,7 +271,7 @@ export default function EventsPageClient({ events, communities }) {
                   {cities.slice(0, 8).map((city) => (
                     <button
                       key={city}
-                      onClick={() => setSelectedCity(city)}
+                      onClick={() => handleCityChange(city)}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                         selectedCity === city
                           ? "bg-terracotta text-white"
@@ -281,7 +293,7 @@ export default function EventsPageClient({ events, communities }) {
                   {years.slice(0, 8).map((year) => (
                     <button
                       key={year}
-                      onClick={() => setSelectedYear(year)}
+                      onClick={() => handleYearChange(year)}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                         selectedYear === year
                           ? "bg-terracotta text-white"
